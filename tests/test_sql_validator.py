@@ -107,6 +107,11 @@ class TestExtractColumns:
         """Column names should be normalized to lowercase."""
         columns = extract_columns("SELECT NAME FROM users")
         assert "name" in columns
+    
+    def test_column_with_table_prefix(self):
+        """Should extract column name even when prefixed with table name e.g. users.name"""
+        columns = extract_columns("SELECT users.name FROM users")
+        assert "name" in columns
 
 
 # ════════════════════════════════════════════════════════════════
