@@ -64,12 +64,8 @@ def extract_sql(llm_response: str) -> str:
 
     # Fallback: look for a line starting with SELECT
     for line in llm_response.split("\n"):
-        if line.strip().upper().startswith("SQL QUERY:"):
-            sql = line.split(":", 1)[1].strip()
-            # Strip trailing semicolon — LLMs commonly add these
-            sql = sql.rstrip(";").strip()
-            if sql:
-                return sql
+        if line.strip().upper().startswith("SELECT"):
+            return line.strip().rstrip(";").strip()
 
     raise ValueError("No valid SQL found in LLM response")
 
