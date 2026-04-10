@@ -4,3 +4,5 @@ __pycache__/
 *.pyc
 venv/
 .DS_Storedatasheet_ai.egg-info/
+test_data.csv
+datasheet.db
